@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Message</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24, #ff3838);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: manipulation;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+        }
+        
+        .tap-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid white;
+            border-radius: 20px;
+            padding: 40px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .tap-button:hover,
+        .tap-button:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .initial-text {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .love-message {
+            display: none;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        .love-message.show {
+            display: block;
+        }
+        
+        .hearts {
+            font-size: 40px;
+            margin: 20px 0;
+            animation: float 2s ease-in-out infinite;
+        }
+        
+        .love-image {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .love-image.show {
+            display: block;
+        }
+        
+        .love-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 3px solid white;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .reset-btn {
+            margin-top: 30px;
+            background: white;
+            color: #ff3838;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+        }
+        
+        .reset-btn.show {
+            display: inline-block;
+        }
+        
+        .reset-btn:hover,
+        .reset-btn:active {
+            transform: scale(0.95);
+            background: #f0f0f0;
+        }
+        
+        .love-image {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .love-image.show {
+            display: block;
+        }
+        
+        .love-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 3px solid white;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tap-button" id="tapButton">
+            <div class="initial-text" id="initialText">💕 Tap me! 💕</div>
+            <div class="love-message" id="loveMessage">
+                <div class="hearts">💖 💕 💖</div>
+                CHUPA KITA
+                <div class="hearts">💕 💖 💕</div>
+            </div>
+            <div class="love-image" id="loveImage">
+                <img src="gae.jpg" alt="Love Image">
+            </div>
+        </div>
+        <button class="reset-btn" id="resetBtn">ISA PA?</button>
+    </div>
+
+    <script>
+        const tapButton = document.getElementById('tapButton');
+        const initialText = document.getElementById('initialText');
+        const loveMessage = document.getElementById('loveMessage');
+        const loveImage = document.getElementById('loveImage');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        tapButton.addEventListener('click', function() {
+            initialText.style.display = 'none';
+            loveMessage.classList.add('show');
+            loveImage.classList.add('show');
+            resetBtn.classList.add('show');
+        });
+        
+        resetBtn.addEventListener('click', function() {
+            initialText.style.display = 'block';
+            loveMessage.classList.remove('show');
+            loveImage.classList.remove('show');
+            resetBtn.classList.remove('show');
+        });
+        
+        // Add touch feedback for mobile
+        tapButton.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.95)';
+        });
+        
+        tapButton.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>
